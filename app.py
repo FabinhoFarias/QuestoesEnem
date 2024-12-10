@@ -32,19 +32,18 @@ def ImprimirQuestao(QUESTAO, ListaComponentesQuestao, DOMINIO):
     st.write(QUESTAO["alternativesIntroduction"]) #https://api.enem.dev/v1/exams/2011/questions/141 fazer gambiarra depois para poder evitar questoes incompletas como essa
     for Alternativa in QUESTAO["alternatives"]:
         if st.button(f"Alternativa {Alternativa['letter']}"):
-            if Alternativa["isCorrect"] != "null":
-                if Alternativa["text"]: #Se houver texto
-                    st.write(f"{Alternativa["text"]}")
-                else: # há imagem
-                    st.image(Alternativa["file"], caption="Alternativa")
-                st.write(f"Alternativa CORRETA :)")
-                
-            else:
-                if Alternativa["text"]: #Se houver texto
-                    st.write(f"{Alternativa['text']}")
-                else: # há imagem
-                    st.image(Alternativa["file"], caption="Alternativa")
-                st.write(f"Alternativa ERRADA :(")
+            st.write(f"Alternativa CORRETA :)")
+        if Alternativa["isCorrect"] != "null":
+            if Alternativa["text"]: #Se houver texto
+                st.write(f"{Alternativa["text"]}")
+            else: # há imagem
+                st.image(Alternativa["file"], caption="Alternativa")
+
+        else:
+            if Alternativa["text"]: #Se houver texto
+                st.write(f"{Alternativa['text']}")
+            else: # há imagem
+                st.image(Alternativa["file"], caption="Alternativa")
 
 
 
