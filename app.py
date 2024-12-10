@@ -9,7 +9,7 @@ def RequestTextoQuestao(ANO, NUMERO):
     # st.html(f"{Questao["discipline"]} -- {Questao["title"]}") COLOCAR EM OUTRA FUNCAO PARA PRINTAR OS COMPONENTES
 
 def QuebraComponentesQuestao(QuestaoJson, TextoQuestao, contador):
-    DOMINIO = "enem.dev"
+    DOMINIO = "https://api.enem.dev"
     ListaComponentesQuestao = []
     if DOMINIO not in TextoQuestao: # Caso base
         ListaComponentesQuestao.append(TextoQuestao)
