@@ -33,7 +33,7 @@ def ImprimirQuestao(QUESTAO, ListaComponentesQuestao, DOMINIO):
     for Alternativa in QUESTAO["alternatives"]:
         # crio botão
         if st.button(f"Alternativa {Alternativa['letter']}"):
-            if Alternativa["isCorrect"] == true:
+            if Alternativa["isCorrect"]:
                 st.write(f"Alternativa CORRETA :)")
             else:
                 st.write(f"Alternativa ERRADA :(")
