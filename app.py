@@ -9,7 +9,7 @@ def RequestTextoQuestao(ANO, NUMERO):
     # st.html(f"{Questao["discipline"]} -- {Questao["title"]}") COLOCAR EM OUTRA FUNCAO PARA PRINTAR OS COMPONENTES
 
 def QuebraComponentesQuestao(QuestaoJson, TextoQuestao, contador):
-    DOMINIO = "https://api.enem.dev"
+    DOMINIO = "enem.dev"
     ListaComponentesQuestao = []
     if DOMINIO not in TextoQuestao: # Caso base
         ListaComponentesQuestao.append(TextoQuestao)
@@ -29,19 +29,23 @@ def ImprimirQuestao(QUESTAO, ListaComponentesQuestao, DOMINIO):
         else:
             st.html(f"<br><p>{Componente}<br></p>")
         #Implementar o LaTeX depois
-    st.write(QUESTAO["alternativesIntroduction"]) #https://api.enem.dev/v1/exams/2011/questions/141 fazer gambiarra depois para poder evitar questoes incompletas como essa
+    st.write(f"**{QUESTAO['alternativesIntroduction']}**") #https://api.enem.dev/v1/exams/2011/questions/141 fazer gambiarra depois para poder evitar questoes incompletas como essa
     for Alternativa in QUESTAO["alternatives"]:
         if Alternativa["isCorrect"] != "null":
+            # crio botão
+            if st.button(f"Alternativa {Alternativa['letter']}"):
+                st.write(f"Alternativa CORRETA :)")
+            
             if Alternativa["text"]: #Se houver texto
                 st.write(f"{Alternativa["text"]}")
             else: # há imagem
                 st.image(Alternativa["file"], caption="Alternativa")
-                if (st.button(f"Alternativa {Alternativa['letter']}")) and (Alternativa["isCorrect"] != "null"):
-                    st.write(f"Alternativa CORRETA :)")
+
 
         else:
             if st.button(f"Alternativa {Alternativa['letter']}"):
-                pass
+                st.write(f"Alternativa ERRADA :(")
+
             if Alternativa["text"]: #Se houver texto
                 st.write(f"{Alternativa['text']}")
             else: # há imagem
