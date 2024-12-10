@@ -22,16 +22,30 @@ def QuebraComponentesQuestao(QuestaoJson, TextoQuestao, contador):
         if ListaPivo[-1]:
             return QuebraComponentesQuestao(QuestaoJson, ListaPivo[-1], contador)
 
-def ImprimirQuestao(ListaComponentesQuestao, DOMINIO):
+def ImprimirQuestao(QUESTAO, ListaComponentesQuestao, DOMINIO):
     for Componente in ListaComponentesQuestao:
         if DOMINIO in Componente:
-            print("\n")
             st.image(Componente, caption="Imagem da Questão")
-            print("\n")
         else:
-            st.write(Componente)
-            print("\n")
+            st.html(f"<br><p>{Componente}<br></p>")
         #Implementar o LaTeX depois
+    st.write(QUESTAO["alternativesIntroduction"]) #https://api.enem.dev/v1/exams/2011/questions/141 fazer gambiarra depois para poder evitar questoes incompletas como essa
+    for Alternativa in QUESTAO["alternatives"]:
+        if st.button(f"Alternativa: {Alternativa["letter"]}")
+            if Alternativa["isCorrect"] != null:
+                if Alternativa["text"]: #Se houver texto
+                    st.write(f"{Alternativa["text"]}")
+                else: # há imagem
+                    st.image(Alternativa["file"], caption="Alternativa")
+                st.write(f"Alternativa CORRETA :)")
+                
+            else:
+                if Alternativa["text"]: #Se houver texto
+                    st.write(f"{Alternativa["text"]}")
+                else: # há imagem
+                    st.image(Alternativa["file"], caption="Alternativa")
+                st.write(f"Alternativa ERRADA :(")
+
 
 
     # st.html(f"{Questao["context"]}")
@@ -62,7 +76,7 @@ def main():
     
     Dominio = "https://api.enem.dev"
     Questao = RequestTextoQuestao(AnoQuestao, NumeroQuestao)
-    ImprimirQuestao(QuebraComponentesQuestao(Questao, Questao["context"], 0), Dominio)
+    ImprimirQuestao(Questao, QuebraComponentesQuestao(Questao, Questao["context"], 0), Dominio)
 
 
 main()
