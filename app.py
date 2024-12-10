@@ -15,7 +15,7 @@ def QuebraComponentesQuestao(QuestaoJson, TextoQuestao, contador):
         ListaComponentesQuestao.append(TextoQuestao)
         return ListaComponentesQuestao
     else:
-        ListaPivo = TextoQuestao.split(f"![]({QuestaoJson["files"][contador]})")
+        ListaPivo = TextoQuestao.split(f"![]({QuestaoJson['files'][contador]})")
         ListaComponentesQuestao.append(ListaPivo[0])
         ListaComponentesQuestao.append(QuestaoJson["files"][contador])
         contador += 1
