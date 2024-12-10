@@ -31,25 +31,16 @@ def ImprimirQuestao(QUESTAO, ListaComponentesQuestao, DOMINIO):
         #Implementar o LaTeX depois
     st.write(f"**{QUESTAO['alternativesIntroduction']}**") #https://api.enem.dev/v1/exams/2011/questions/141 fazer gambiarra depois para poder evitar questoes incompletas como essa
     for Alternativa in QUESTAO["alternatives"]:
-        if Alternativa["isCorrect"] == true:
-            # crio botão
-            if st.button(f"Alternativa {Alternativa['letter']}"):
+        # crio botão
+        if st.button(f"Alternativa {Alternativa['letter']}"):
+            if Alternativa["isCorrect"] == true:
                 st.write(f"Alternativa CORRETA :)")
-            
-            if Alternativa["text"]: #Se houver texto
-                st.write(f"{Alternativa["text"]}")
-            else: # há imagem
-                st.image(Alternativa["file"], caption="Alternativa")
-
-
-        else:
-            if st.button(f"Alternativa {Alternativa['letter']}"):
+            else:
                 st.write(f"Alternativa ERRADA :(")
-
-            if Alternativa["text"]: #Se houver texto
-                st.write(f"{Alternativa['text']}")
-            else: # há imagem
-                st.image(Alternativa["file"], caption="Alternativa")
+        if Alternativa["text"]: #Se houver texto
+            st.write(f"{Alternativa["text"]}")
+        else: # há imagem
+            st.image(Alternativa["file"], caption="Alternativa")
 
 
 
