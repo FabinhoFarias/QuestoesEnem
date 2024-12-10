@@ -21,7 +21,7 @@ def QuebraComponentesQuestao(QuestaoJson, TextoQuestao, contador):
         contador += 1
         if ListaPivo[-1]:
             return QuebraComponentesQuestao(QuestaoJson, ListaPivo[-1], contador)
-        return ListaComponentesQuestao
+        
 
 def ImprimirQuestao(QUESTAO, ListaComponentesQuestao, DOMINIO):
     for Componente in ListaComponentesQuestao:
