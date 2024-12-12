@@ -43,13 +43,36 @@ def ImprimirQuestao(QUESTAO, ListaComponentesQuestao, DOMINIO):
         else: # há imagem
             st.image(Alternativa["file"], caption="Alternativa")
     st.markdown("---")
+    button_style = """
+        <style>
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            margin: 5px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .button img {
+            height: 24px;
+            margin-right: 10px;
+        }
+        </style>
+        """
+
+    # Adicionar CSS ao Streamlit
+    st.markdown(button_style, unsafe_allow_html=True)
+    st.markdown(f"<a href='https://example.com' class='button'><img src='https://enem.dev/2011/questions/142/29f02ac4-b2ab-4397-b8f4-de763ed2079f.png' alt='Icon'>Botão com Imagem</a>",unsafe_allow_html=True)
 
 
-    # st.html(f"{Questao["context"]}")
-    # if len(Questao["files"]) >= 1:
-    #     for Arquivo in Questao["files"]:
-    #         st.image(f"{Arquivo}")        
-    # st.html(f"<p>{Questao["alternativesIntroduction"]}</p>")
+
+
 
 
 
