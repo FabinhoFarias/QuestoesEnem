@@ -68,7 +68,7 @@ def ImprimirQuestao(QUESTAO, ListaComponentesQuestao, DOMINIO):
 
     # Adicionar CSS ao Streamlit
     st.markdown(button_style, unsafe_allow_html=True)
-    st.markdown(f"<a href='https://example.com' class='button'><img src='https://enem.dev/2011/questions/142/29f02ac4-b2ab-4397-b8f4-de763ed2079f.png' alt='Icon'>Botão com Imagem</a>",unsafe_allow_html=True)
+    st.markdown(f"<a href='https://enem.dev/2011/questions/142/29f02ac4-b2ab-4397-b8f4-de763ed2079f.png' class='button'><img src='https://enem.dev/2011/questions/142/29f02ac4-b2ab-4397-b8f4-de763ed2079f.png' alt='Icon'>Botão com Imagem</a>",unsafe_allow_html=True)
 
 
 
