@@ -40,7 +40,7 @@ def ImprimirQuestao(QUESTAO, ListaComponentesQuestao, DOMINIO):
         else: # há imagem
             st.image(Alternativa["file"], caption="Alternativa")
             if Alternativa["isCorrect"]:
-                    st.write(f"Alternativa ERRADA :(")
+                st.write(f"Alternativa ERRADA :(")
     st.markdown("---")
    
 
