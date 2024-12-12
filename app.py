@@ -40,8 +40,8 @@ def ImprimirQuestao(QUESTAO, ListaComponentesQuestao, DOMINIO):
                 else:
                     st.write(f"Alternativa ERRADA :(")
         else: # há imagem
-            st.image(Alternativa["file"], caption="Alternativa")
-            if st.button(f"Alternativa{Alternativa['letter']}"):
+            st.image(Alternativa["file"])
+            if st.button(f"Alternativa {Alternativa['letter']}"):
                 if Alternativa["isCorrect"]:
                     st.write(f"Alternativa CORRETA :)")
                 else:
