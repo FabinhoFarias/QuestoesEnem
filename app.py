@@ -33,49 +33,17 @@ def ImprimirQuestao(QUESTAO, ListaComponentesQuestao, DOMINIO):
     for Alternativa in QUESTAO["alternatives"]:
         # crio botão
         st.markdown("---")
-        if st.button(f"Alternativa {Alternativa['letter']}"):
-            if Alternativa["isCorrect"]:
-                st.write(f"Alternativa CORRETA :)")
-            else:
-                st.write(f"Alternativa ERRADA :(")
         if Alternativa["text"]: #Se houver texto
-            st.write(f"{Alternativa["text"]}")
-        else: # há imagem
-            st.image(Alternativa["file"], caption="Alternativa")
-
-    # Exemplo de dados de uma questão
-    QUESTAO = {
-        "alternatives": [
-            {"letter": "A", "text": "50 minutos.", "file": None, "isCorrect": False},
-            {"letter": "B", "text": None, "file": "https://via.placeholder.com/150", "isCorrect": True},
-            {"letter": "C", "text": "80 minutos.", "file": None, "isCorrect": False},
-            {"letter": "D", "text": None, "file": "https://via.placeholder.com/200", "isCorrect": False},
-        ]
-    }
-
-    # Laço para renderizar as alternativas
-    for Alternativa in QUESTAO["alternatives"]:
-        st.markdown("---")  # Divisor entre alternativas
-        
-        if Alternativa["file"]:  # Caso tenha imagem
-            # Botão com imagem usando HTML
-            st.markdown(
-                f"""
-                <a href="#" onclick="window.location.reload()" class="button">
-                    <img src="{Alternativa['file']}" alt="Alternativa {Alternativa['letter']}" style="width:150px; height:auto; border-radius:10px;"/>
-                </a>
-                """,
-                unsafe_allow_html=True,
-            )
-            st.write(f"Alternativa {Alternativa['letter']}")
-        else:  # Caso tenha texto
-            if st.button(f"Alternativa {Alternativa['letter']} - {Alternativa['text']}"):
+            if st.button(f"{Alternativa['letter']}: {Alternativa['text']}"):
                 if Alternativa["isCorrect"]:
                     st.write(f"Alternativa CORRETA :)")
-                else:
+        else: # há imagem
+            st.image(Alternativa["file"], caption="Alternativa")
+            if Alternativa["isCorrect"]:
                     st.write(f"Alternativa ERRADA :(")
+    st.markdown("---")
+   
 
-    st.markdown("---")  # Divisor final
 
 
 
