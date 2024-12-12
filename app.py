@@ -37,10 +37,15 @@ def ImprimirQuestao(QUESTAO, ListaComponentesQuestao, DOMINIO):
             if st.button(f"{Alternativa['letter']}: {Alternativa['text']}"):
                 if Alternativa["isCorrect"]:
                     st.write(f"Alternativa CORRETA :)")
+                else:
+                    st.write(f"Alternativa ERRADA :(")
         else: # há imagem
             st.image(Alternativa["file"], caption="Alternativa")
-            if Alternativa["isCorrect"]:
-                st.write(f"Alternativa ERRADA :(")
+            if st.button(f"Alternativa{Alternativa['letter']}"):
+                if Alternativa["isCorrect"]:
+                    st.write(f"Alternativa CORRETA :)")
+                else:
+                    st.write(f"Alternativa ERRADA :(")
     st.markdown("---")
    
 
