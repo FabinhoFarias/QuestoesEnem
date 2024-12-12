@@ -42,37 +42,40 @@ def ImprimirQuestao(QUESTAO, ListaComponentesQuestao, DOMINIO):
             st.write(f"{Alternativa["text"]}")
         else: # há imagem
             st.image(Alternativa["file"], caption="Alternativa")
-    st.markdown("---")
-    button_style = """
-        <style>
-        .button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px 20px;
-            margin: 5px;
-            border: 2px solid #ccc;
-            border-radius: 5px;
-            background-color: #f0f0f0;
-            text-align: center;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 16px;
-        }
-        .button img {
-            height: 24px;
-            margin-right: 10px;
-        }
-        </style>
-        """
 
-    # Adicionar CSS ao Streamlit
-    st.markdown(button_style, unsafe_allow_html=True)
-    st.markdown(f"<a href='https://enem.dev/2011/questions/142/29f02ac4-b2ab-4397-b8f4-de763ed2079f.png' class='button'><img src='https://enem.dev/2011/questions/142/29f02ac4-b2ab-4397-b8f4-de763ed2079f.png' alt='Icon'>Botão com Imagem</a>",unsafe_allow_html=True)
+    # Exemplo de dados de uma questão
+    QUESTAO = {
+        "alternatives": [
+            {"letter": "A", "text": "50 minutos.", "file": None, "isCorrect": False},
+            {"letter": "B", "text": None, "file": "https://via.placeholder.com/150", "isCorrect": True},
+            {"letter": "C", "text": "80 minutos.", "file": None, "isCorrect": False},
+            {"letter": "D", "text": None, "file": "https://via.placeholder.com/200", "isCorrect": False},
+        ]
+    }
 
+    # Laço para renderizar as alternativas
+    for Alternativa in QUESTAO["alternatives"]:
+        st.markdown("---")  # Divisor entre alternativas
+        
+        if Alternativa["file"]:  # Caso tenha imagem
+            # Botão com imagem usando HTML
+            st.markdown(
+                f"""
+                <a href="#" onclick="window.location.reload()" class="button">
+                    <img src="{Alternativa['file']}" alt="Alternativa {Alternativa['letter']}" style="width:150px; height:auto; border-radius:10px;"/>
+                </a>
+                """,
+                unsafe_allow_html=True,
+            )
+            st.write(f"Alternativa {Alternativa['letter']}")
+        else:  # Caso tenha texto
+            if st.button(f"Alternativa {Alternativa['letter']} - {Alternativa['text']}"):
+                if Alternativa["isCorrect"]:
+                    st.write(f"Alternativa CORRETA :)")
+                else:
+                    st.write(f"Alternativa ERRADA :(")
 
-
-
+    st.markdown("---")  # Divisor final
 
 
 
